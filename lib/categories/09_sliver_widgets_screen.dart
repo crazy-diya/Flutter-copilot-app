@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/section_header.dart';
 
 class SliverWidgetsScreen extends StatefulWidget {
   const SliverWidgetsScreen({super.key});
@@ -8,24 +7,10 @@ class SliverWidgetsScreen extends StatefulWidget {
   State<SliverWidgetsScreen> createState() => _SliverWidgetsScreenState();
 }
 
-class _SliverWidgetsScreenState extends State<SliverWidgetsScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _SliverWidgetsScreenState extends State<SliverWidgetsScreen> {
   final GlobalKey<AnimatedListState> _animatedListKey =
       GlobalKey<AnimatedListState>();
   final List<String> _animatedItems = ['Item 1', 'Item 2', 'Item 3'];
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   void _addAnimatedItem() {
     final index = _animatedItems.length;

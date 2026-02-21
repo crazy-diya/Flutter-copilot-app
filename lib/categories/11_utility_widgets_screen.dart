@@ -55,9 +55,33 @@ class _UtilityWidgetsScreenState extends State<UtilityWidgetsScreen> {
             widgetName: 'StatefulBuilder',
             child: ElevatedButton(
               onPressed: () {
+                int count = 0;
                 showDialog(
                   context: context,
-                  builder: (ctx) => _StatefulBuilderDialog(),
+                  builder: (ctx) => StatefulBuilder(
+                    builder: (ctx2, setDialogState) => AlertDialog(
+                      title: const Text('StatefulBuilder Dialog'),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Count: $count',
+                              style: const TextStyle(fontSize: 20)),
+                          const SizedBox(height: 12),
+                          ElevatedButton(
+                            onPressed: () =>
+                                setDialogState(() => count++),
+                            child: const Text('Increment'),
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(ctx2),
+                          child: const Text('Close'),
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
               child: const Text('Open Dialog with StatefulBuilder'),
@@ -291,41 +315,6 @@ class _UtilityWidgetsScreenState extends State<UtilityWidgetsScreen> {
           const SizedBox(height: 80),
         ],
       ),
-    );
-  }
-}
-
-class _StatefulBuilderDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return StatefulBuilder(
-      builder: (ctx, setLocalState) {
-        int count = 0;
-        return AlertDialog(
-          title: const Text('StatefulBuilder Dialog'),
-          content: StatefulBuilder(
-            builder: (ctx2, setState2) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('Count: $count', style: const TextStyle(fontSize: 20)),
-                  const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () => setState2(() => count++),
-                    child: const Text('Increment'),
-                  ),
-                ],
-              );
-            },
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('Close'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

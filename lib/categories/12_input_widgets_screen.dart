@@ -239,8 +239,8 @@ class _InputWidgetsScreenState extends State<InputWidgetsScreen> {
             widgetName: 'AutofillGroup',
             child: AutofillGroup(
               child: Column(
-                children: const [
-                  TextField(
+                children: [
+                  const TextField(
                     autofillHints: [AutofillHints.email],
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -249,8 +249,8 @@ class _InputWidgetsScreenState extends State<InputWidgetsScreen> {
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 12),
-                  TextField(
+                  const SizedBox(height: 12),
+                  const TextField(
                     autofillHints: [AutofillHints.password],
                     obscureText: true,
                     decoration: InputDecoration(
